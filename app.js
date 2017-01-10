@@ -8,9 +8,10 @@ angular.module('LunchCheck', [])
 LunchCheckController.$inject = ['$scope'];
 
 function LunchCheckController($scope) {
-	$scope.list = '';
+  $scope.list = '';
   $scope.message = '';
   $scope.list2 = '';
+	
   $scope.check = function(){
     $scope.list2 = $scope.list.split(',')
     
