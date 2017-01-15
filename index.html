@@ -1,35 +1,59 @@
-<html ng-app="LunchCheck">
-	<head>
-		<title>Lunch Checker</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
-    <script src="app.js"></script>
-		
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!doctype html>
+<html lang="en" ng-app="ShoppingListCheckOff">
+<head>
+  <title>Shopping List Check Off</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
+  <script src="app.js"></script>
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<style>
-			.message { font-size: 1.3em; font-weight: bold; }
-		</style>
-	</head>
-	<body>
-		<div class="container" ng-controller="LunchCheckController">
-			<h1>Assignment 1 - Lunch Checker</h1>
+  
 
-			<div class="form-group">
-				<input id="lunch-menu" ng-model="list" type="text" placeholder="Dishes you usually have for lunch" class="form-control">
-			</div>
-			<div class="form-group">
-				<button class="btn btn-default" ng-click="check()">Check If Too Much</button>
-			</div>
-			<div class="form-group message">
-				{{message}}
-			</div>
-		</div>
-	</body>
+  <style>
+  .emptyMessage {
+    font-weight: bold;
+    color: red;
+    font-size: 1.2em;
+  }
+  li {
+    margin-bottom: 7px;
+    font-size: 1.2em;
+  }
+  li > button {
+    margin-left: 6px;
+  }
+  button > span {
+    color: green;
+  }
+  </style>
+</head>
+<body >
+  <div class="container">
+    <h1>Shopping List Check Off</h1>
+
+    <div class="row">
+
+      <!-- To Buy List -->
+      <div class="col-md-6 toBuy" ng-controller="ToBuyController as tb">
+        <h2>To Buy:</h2>
+        <ul ng-repeat="item in tb.buyList">
+          <li>Buy {{item.quantity}} {{item.name}} <button class="btn btn-default" ng-click="tb.markBought($index);"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
+        </ul>
+        <div class="emptyMessage" ng-if="tb.buyList.length == 0">Everything is bought!</div>
+      </div>
+
+      <!-- Already Bought List -->
+      <div class="col-md-6" ng-controller="AlreadyBoughtController as ab">
+        <h2>Already Bought:</h2>
+        <ul ng-repeat="item in ab.alreadyBoughtList">
+          <li>Bought {{item.quantity}} {{item.name}}</li>
+        </ul>
+        <div class="emptyMessage" ng-if="ab.alreadyBoughtList.length == 0">Nothing bought yet.</div>
+      </div>
+    </div>
+  </div>
+
+</body>
 </html>
