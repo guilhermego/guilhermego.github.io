@@ -2,7 +2,7 @@
 # Este é um arquivo de inventário de exemplo.
 # Inserido automaticamente por uma GitHub Action.
 ambiente: desenvolvimento
-alterado001_002
+alterado001_003
 versao: 1.0.0
 servicos:
   - webapp
